@@ -8,7 +8,7 @@ ol, ul {
 
 li {
   list-style: none;
-  padding: 1vh;
+  padding: 1vh 0;
 }
 
 .board-row:after {
@@ -53,6 +53,18 @@ li {
   outline: none;
 }
 
+i.fa.fa-play p {
+  font: 14px "Century Gothic", Futura, sans-serif;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 2%;
+}
+.fa-play {
+  display: flex;
+  align-items: center;
+  margin-left: 5%;
+}
 .kbd-navigation .square:focus {
   background: blue;
 }
@@ -114,10 +126,18 @@ li {
   width: 100%;
   padding: 2% 3%;
 }
-.btn.btn-info.btn-moves, .btn.btn-dark.btn-moves {
+.btn.btn-info.btn-moves, .btn.btn-dark.btn-moves  {
   padding: 3%;
   border: 1px solid rgb(255, 255, 255);
   width: 100%;
+  font: 14px "Century Gothic", Futura, sans-serif;
+}
+
+.btn.btn-light.btn-moves {
+  padding: 3%;
+  border: 1px solid #16a2b8;
+  width: 100%;
+  font: 14px "Century Gothic", Futura, sans-serif;
 }
 
 

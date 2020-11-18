@@ -6,8 +6,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Square = (props) => {
   return (
-    <button className="btn btn-outline-light square" onClick={props.onClick}>
-      {props.value}
+    <button 
+      className="btn btn-outline-light square"
+      onClick={props.onClick}
+    >{props.value}
     </button>
   );
 }
@@ -19,6 +21,7 @@ class Board extends React.Component {
     return (
       <Square
         className="square-component"
+        key={i}
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
       />
@@ -53,7 +56,8 @@ class Game extends React.Component {
         }
       ],
       stepNumber: 0,
-      xIsNext: true
+      xIsNext: true,
+      isAscending: true,
     };
   }
 
@@ -85,6 +89,12 @@ class Game extends React.Component {
     });
   }
 
+  handleSortToggle() {
+    this.setState({
+      isAscending: !this.state.isAscending
+    });
+  }
+
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
@@ -96,7 +106,7 @@ class Game extends React.Component {
       const row = 1 + Math.floor(latestMove / 3);
       const desc = move ?
         `    Go to move n:${move}    Position: col ${col} - row ${row}` :
-        ` Go to game start `;
+        <i className="fa fa-play" aria-hidden="true"><p>&nbsp;&nbsp;Go to game start</p></i>;
       return (
         <li key={move}>
           <button 
@@ -117,7 +127,10 @@ class Game extends React.Component {
       status = "Next player: " + (this.state.xIsNext ? "X" : "O");
     }
 
-   
+    const isAscending = this.state.isAscending;
+      if (!isAscending) {
+        moves.reverse();
+      }
 
     return (
       <div className="game">
@@ -136,6 +149,11 @@ class Game extends React.Component {
             />
             </div>
             <div className="col-xs-12 col-md-3 game-moves">
+            <button 
+              className='btn btn-light btn-moves'
+              onClick={() => this.handleSortToggle()}><i className="fa fa-sort" aria-hidden="true">&nbsp;&nbsp;</i>
+              {isAscending ? 'Descending' : 'Ascending'}
+            </button>
               <ol>{moves}</ol>
             </div>
           </div>
