@@ -43,8 +43,12 @@ li {
   height: 25vh;
   max-height: 100px;
 }
-
-
+.square:active {
+  color: #26272b!important;
+}
+.square:hover {
+  color: #26272b!important;
+}
 .square:focus {
   outline: none;
 }
@@ -66,6 +70,7 @@ li {
   justify-content: center;
   display: grid;
   align-content: baseline;
+  
 }
 
 
