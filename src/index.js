@@ -4,7 +4,7 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-function Square(props) {
+const Square = (props) => {
   return (
     <button className="btn btn-outline-light square" onClick={props.onClick}>
       {props.value}
@@ -104,7 +104,13 @@ class Game extends React.Component {
         ` Go to game start `;
       return (
         <li key={move}>
-          <button className="btn btn-info btn-moves" onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button 
+              className={move === this.state.stepNumber ?
+                'btn btn-info btn-moves btn-block move-list-item-selected' :
+                'btn btn-dark btn-moves btn-block'}
+              onClick={() => this.jumpTo(move)}
+            >{desc}
+            </button>
         </li>
       );
     });
@@ -147,7 +153,7 @@ class Game extends React.Component {
 
 // ========================================
 
-function calculateWinner(squares) {
+const calculateWinner = (squares) => {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],

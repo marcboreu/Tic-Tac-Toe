@@ -109,7 +109,7 @@ li {
   width: 100%;
   padding: 2% 3%;
 }
-.btn.btn-info.btn-moves {
+.btn.btn-info.btn-moves, .btn.btn-dark.btn-moves {
   padding: 3%;
   border: 1px solid rgb(255, 255, 255);
   width: 100%;
