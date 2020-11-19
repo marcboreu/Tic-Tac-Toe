@@ -113,14 +113,47 @@ i.fa.fa-play p {
 
 .status {
   align-items: center;
-  color: rgb(0, 0, 0);
-  background-color: rgb(198, 198, 198);
+  color: white;
+  background: linear-gradient(#e664649f, #e5ca918a);
+  border: 1px solid white!important;
+  border-radius: 5px;
   display: flex;
-  font-size: 2.5rem;
+  font-size: 25px;
   justify-content: center;
   padding: 2%;
-  margin: 0;
+  margin: 4% auto;
+  width: 50vw
 }
+.status-draw{
+  display: flex;
+  font-size: 25px;
+  justify-content: center;
+  padding: 2%;
+  font-weight: bold;
+  background: linear-gradient(#ff0000b6, #f003034f, #f4095b8a);
+  border: 1px solid white;
+  border-radius: 5px;
+  margin: 4% auto ;
+  width: 50vw;
+  animation: winnerSquares 2.5s linear infinite;
+  color: white;
+}
+.status-win{
+  display: flex;
+  font-size: 25px;
+  justify-content: center;
+  padding: 2%;
+  font-weight: bold;
+  background: linear-gradient(#e6646464, #8df0034f, #8ef0038a);
+  border: 1px solid white;
+  border-radius: 5px;
+  margin: 4% auto ;
+  width: 50vw;
+  animation: winnerSquares 2.5s linear infinite;
+  color:white;
+}
+
+
 .col-xs-12.col-md-3.game-moves {
   justify-content: center;
   width: 100%;

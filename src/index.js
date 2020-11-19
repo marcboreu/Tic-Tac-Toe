@@ -123,12 +123,18 @@ class Game extends React.Component {
       );
     });
 
+
     let status;
-    if (winner) {
-      status = "Winner: " + winner;
-    } else {
-      status = "Next player: " + (this.state.xIsNext ? "X" : "O");
-    }
+      if (winner) {
+        status = <div className="col-xs-12 status-win">{(`Player ${winner} wins! Congrats!`)}</div>;
+      } else {
+        if (!winner && (moves.length === 10)) {
+        status = <div className="col-xs-12 status-draw">Anyone wins, play again!</div>
+        } else {
+          status = <div className="col-xs-12 status">Next player : {(this.state.xIsNext ? 'X' : 'O')}</div>
+        }
+      }
+
 
     const isAscending = this.state.isAscending;
       if (!isAscending) {
@@ -142,8 +148,8 @@ class Game extends React.Component {
           <h1 className="title">Tic Tac Toe</h1>
         </div>
         <div className="col-12 game-board">
-            <div className="col-xs-12 status">
-              <h3>{status}</h3>
+            <div className="row">
+              {status}
             </div>
           <div className="row justify-content-center">
             <div className="col-xs-12 col-md-9 board-container">
