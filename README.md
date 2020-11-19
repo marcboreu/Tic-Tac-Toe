@@ -2,6 +2,8 @@
 
 Game tic-tac-toe vitaminated
 
+You can see and play in 👉 https://marcboreu.github.io/Tic-Tac-Toe/
+
 ### 1.1. First Commit with orginal code
 
 Original code after first practise.
