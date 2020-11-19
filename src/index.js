@@ -5,9 +5,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const Square = (props) => {
+  const className = "btn btn-outline-light square" + (props.lineWinner ? ' winnerSquares' : '');
   return (
     <button 
-      className="btn btn-outline-light square"
+      className={className}
       onClick={props.onClick}
     >{props.value}
     </button>
@@ -17,13 +18,13 @@ const Square = (props) => {
 class Board extends React.Component {
   
   renderSquare(i) {
-    
+    const winnerLineSquare = this.props.winnerLineSquare;
     return (
       <Square
-        className="square-component"
         key={i}
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
+        lineWinner={winnerLineSquare && winnerLineSquare.includes(i)}
       />
     );
   }
@@ -65,7 +66,7 @@ class Game extends React.Component {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
+    if (calculateWinner(squares).winner || squares[i]) {
       return;
     }
     squares[i] = this.state.xIsNext ? "X" : "O";
@@ -98,9 +99,11 @@ class Game extends React.Component {
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-    const winner = calculateWinner(current.squares);
+    const winnerInfo = calculateWinner(current.squares);
+    const winner = winnerInfo.winner;
 
-    const moves = history.map((step, move) => {
+
+    let moves = history.map((step, move) => {
       const latestMove = step.latestMove;
       const col = 1 + latestMove % 3;
       const row = 1 + Math.floor(latestMove / 3);
@@ -131,6 +134,7 @@ class Game extends React.Component {
       if (!isAscending) {
         moves.reverse();
       }
+    
 
     return (
       <div className="game">
@@ -146,6 +150,7 @@ class Game extends React.Component {
               <Board
               squares={current.squares}
               onClick={i => this.handleClick(i)}
+              winnerLineSquare={winnerInfo.line}
             />
             </div>
             <div className="col-xs-12 col-md-3 game-moves">
@@ -180,11 +185,17 @@ const calculateWinner = (squares) => {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return {
+        winner: squares[a],
+        line: lines[i],
+      };
     }
   }
-  return null;
-}
+  return {
+    winner: null,
+    line: null,
+  };
+};
 
 
 
@@ -204,7 +215,7 @@ const FooterMarcBoreu = () => {
             <div className="row">
               <div className="col-sm-12 col-md-9">
                 <h6>About this</h6>
-                <a href="https://github.com/marcboreu?tab=repositories">
+                <a href="https://github.com/marcboreu/Tic-Tac-Toe">
                 <button className="btn btn-outline-danger btn-code">View Code</button>
                 </a>
                 <p className="text-about">
@@ -253,7 +264,7 @@ const FooterMarcBoreu = () => {
                   Copyright &copy; {date} All Rights Reserved || Created and developed by &nbsp;
                   <a href="https://marcboreu.com" target="_blank" rel="noreferrer">
                    Marc Boreu 
-                  <img className="marcboreu" src="https://raw.githubusercontent.com/marcboreu/marcboreu/master/logo-footer-mb.png" alt="Marc Boreu" target="_blank"/>
+                  <img className="marcboreu" src="https://raw.githubusercontent.com/marcboreu/marcboreu/main/logo-footer-mb.png" alt="Marc Boreu" target="_blank"/>
                   </a>
                 </p>
               </div>

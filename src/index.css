@@ -141,6 +141,19 @@ i.fa.fa-play p {
 }
 
 
+
+.winnerSquares {
+  animation: winnerSquares 2.5s linear infinite;
+  color:#212529!important;
+  background-color: #18ff00!important;
+}
+@keyframes winnerSquares {
+  50% {
+    opacity: 0;
+  }
+}
+
+
 /*-- Styles for footer --*/
 
 .marcboreu {
